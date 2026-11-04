@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#081322"><title>ZAYRO — Conteúdo que vende</title>
+<style>
+:root{--bg:#07111f;--panel:#101f31;--line:#24364a;--mint:#b8ff65;--txt:#f4f7fb;--muted:#9aabc0}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#1d3c3d 0,transparent 38%),var(--bg);color:var(--txt);font:15px system-ui,-apple-system,Arial}
+header{padding:24px 18px 18px;display:flex;align-items:center;justify-content:space-between;max-width:1050px;margin:auto}
+.logo{font-weight:950;font-size:30px;letter-spacing:2px}.logo span{color:var(--mint)}.tag{font-size:10px;letter-spacing:2px;color:var(--muted)}
+.pill{font-size:10px;border:1px solid #526b46;color:var(--mint);padding:7px 10px;border-radius:99px}
+main{max-width:1050px;margin:auto;padding:0 14px 35px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.panel{background:linear-gradient(160deg,#13263a,#0c1a2a);border:1px solid var(--line);border-radius:18px;padding:19px;box-shadow:0 12px 35px #0003}
+h1{font-size:23px;margin:0 0 6px}h2{font-size:18px;margin:0 0 12px}.sub{color:var(--muted);line-height:1.5;font-size:13px;margin:0 0 15px}
+label{display:block;font-size:12px;color:#d6e2ee;margin:13px 0 6px}
+input,textarea,select{width:100%;border:1px solid #30465d;background:#081625;color:white;padding:12px;border-radius:10px;font:14px system-ui;outline:none}
+textarea{min-height:75px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:var(--mint)}
+button{border:0;border-radius:11px;padding:13px 15px;font-weight:800;cursor:pointer}
+.primary{width:100%;background:var(--mint);color:#07111f;margin-top:17px}.secondary{background:#1b334b;color:#fff;border:1px solid #35516b}
+button:disabled{opacity:.55;cursor:wait}.note{font-size:11px;color:var(--muted);line-height:1.5;margin-top:12px}
+.result{background:#091827;border:1px solid var(--line);padding:14px;border-radius:12px;margin:10px 0}
+.resulthead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.result p{white-space:pre-wrap;line-height:1.55;margin:0;font-size:14px}
+.copy{padding:8px 10px;font-size:11px;background:#233b52;color:white}
+.empty{padding:22px;text-align:center;border:1px dashed #35516b;border-radius:12px;color:var(--muted);font-size:13px;line-height:1.5}
+.imagebox{margin-top:16px}.imagebox img{display:block;width:100%;border-radius:12px;margin-top:12px;background:#0a1726}
+.download{display:block;text-align:center;background:var(--mint);color:#07111f;text-decoration:none;padding:13px;border-radius:10px;font-weight:850;margin-top:10px}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:0 18px 28px}
+@media(max-width:760px){main{grid-template-columns:1fr}header{padding-top:18px}.panel{padding:16px}}
+</style></head>
+<body>
+<header><div><div class="logo">ZAY<span>RO</span> ✦</div><div class="tag">CONTEÚDO QUE VENDE</div></div><div class="pill" id="status">CONECTANDO…</div></header>
+<main>
+<section class="panel">
+<h1>Crie sua divulgação</h1><p class="sub">Preencha os dados do negócio. A ZAYRO cria anúncios e imagens publicitárias do zero.</p>
+<label>Nome do estabelecimento</label><input id="brand" placeholder="Ex.: Burger House">
+<label>Tipo de negócio</label><select id="segment"><option>Restaurante / Lanchonete</option><option>Loja de roupas</option><option>Beleza / Estética</option><option>Mercado / Conveniência</option><option>Delivery</option><option>Outro comércio</option></select>
+<label>Produto ou serviço</label><input id="product" placeholder="Ex.: X-Burger artesanal">
+<label>Detalhes verdadeiros do produto</label><textarea id="details" placeholder="Ingredientes, características, diferenciais…"></textarea>
+<label>Objetivo da divulgação</label><select id="goal"><option>Vender mais</option><option>Divulgar uma promoção</option><option>Apresentar uma novidade</option><option>Gerar engajamento</option><option>Fortalecer a marca</option></select>
+<label>Canal</label><select id="channel"><option>Instagram</option><option>WhatsApp</option><option>Facebook</option><option>Todos</option></select>
+<label>Tom da comunicação</label><select id="tone"><option>Moderno e direto</option><option>Descontraído</option><option>Elegante e sofisticado</option><option>Chamativo e promocional</option><option>Divertido</option></select>
+<button class="primary" id="textBtn" onclick="makeTexts()">✦ GERAR 3 ANÚNCIOS COM IA</button>
+<div class="note">A IA não inventará preços, descontos ou ingredientes que você não informar.</div>
+</section>
+<section class="panel">
+<h2>Seus anúncios</h2><div id="texts"><div class="empty">As três opções de anúncio aparecerão aqui.</div></div>
+<div class="imagebox">
+<h2 style="margin-top:22px">Imagem publicitária com IA</h2><p class="sub">Crie uma imagem profissional do zero para divulgar seu produto ou negócio.</p>
+<label>Formato da imagem</label><select id="size"><option value="1024x1024">Quadrado — Feed</option><option value="1024x1536">Vertical — Stories</option><option value="1536x1024">Horizontal — Banner</option></select>
+<label>Direção visual (opcional)</label><input id="visual" placeholder="Ex.: fundo escuro, luz cinematográfica, elegante">
+<button class="primary" id="imageBtn" onclick="makeImage()">✦ GERAR IMAGEM COM IA</button>
+<div id="imageResult" class="empty" style="margin-top:12px">Sua imagem aparecerá aqui após a geração.</div>
+</div>
+<div class="imagebox">
+<h2 style="margin-top:22px">Criar logotipo</h2><p class="sub">Gere uma proposta visual de identidade para a marca.</p>
+<label>Estilo do logo</label><input id="logoStyle" placeholder="Ex.: minimalista, elegante, moderno">
+<button class="secondary" id="logoBtn" style="width:100%;margin-top:12px" onclick="makeLogo()">CRIAR LOGOTIPO COM IA</button>
+<div id="logoResult" class="empty" style="margin-top:12px">O logotipo aparecerá aqui.</div>
+</div>
+</section></main>
+<footer>ZAYRO ✦ Plataforma de criação publicitária. As gerações usam a API configurada pelo administrador.</footer>
+<script>
+const v=id=>document.getElementById(id).value.trim();
+async function request(path,body){const r=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const data=await r.json();if(!r.ok)throw new Error(data.error||'Não foi possível concluir.');return data}
+function info(){fetch('/api/health').then(r=>r.json()).then(d=>{document.getElementById('status').textContent=d.configured?'IA CONECTADA':'CONFIGURAÇÃO PENDENTE'}).catch(()=>document.getElementById('status').textContent='SERVIDOR OFFLINE')}
+function base(){return {brand:v('brand'),segment:v('segment'),product:v('product'),details:v('details'),goal:v('goal'),channel:v('channel'),tone:v('tone')}}
+function loading(id,on,label){const b=document.getElementById(id);b.disabled=on;b.textContent=on?'GERANDO…':label}
+async function makeTexts(){if(!v('brand')||!v('product'))return alert('Informe o nome do estabelecimento e o produto.');loading('textBtn',true,'✦ GERAR 3 ANÚNCIOS COM IA');try{const d=await request('/api/texts',base());document.getElementById('texts').innerHTML=d.ads.map((a,i)=>`<div class="result"><div class="resulthead"><b>OPÇÃO ${i+1}</b><button class="copy" onclick="navigator.clipboard.writeText(document.getElementById('ad${i}').innerText).then(()=>alert('Texto copiado!'))">COPIAR</button></div><p id="ad${i}">${esc(a)}</p></div>`).join('')}catch(e){alert(e.message)}finally{loading('textBtn',false,'✦ GERAR 3 ANÚNCIOS COM IA')}}
+async function makeImage(){if(!v('brand')||!v('product'))return alert('Informe o nome do estabelecimento e o produto.');loading('imageBtn',true,'CRIANDO IMAGEM…');try{const d=await request('/api/image',{...base(),size:v('size'),visual:v('visual'),kind:'ad'});showImage('imageResult',d.image,'zayro-anuncio.png')}catch(e){alert(e.message)}finally{loading('imageBtn',false,'✦ GERAR IMAGEM COM IA')}}
+async function makeLogo(){if(!v('brand'))return alert('Informe o nome do estabelecimento.');loading('logoBtn',true,'CRIANDO LOGO…');try{const d=await request('/api/image',{...base(),size:'1024x1024',visual:v('logoStyle'),kind:'logo'});showImage('logoResult',d.image,'zayro-logo.png')}catch(e){alert(e.message)}finally{loading('logoBtn',false,'CRIAR LOGOTIPO COM IA')}}
+function showImage(id,data,name){const el=document.getElementById(id);el.className='';el.innerHTML=`<img alt="Imagem gerada pela ZAYRO" src="data:image/png;base64,${data}"><a class="download" download="${name}" href="data:image/png;base64,${data}">BAIXAR PNG</a>`}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+info();
+</script></body></html>
